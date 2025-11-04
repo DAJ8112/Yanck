@@ -1,0 +1,18 @@
+target-version = "py311"
+line-length = 100
+
+[lint]
+select = ["E", "F", "I", "N", "UP", "ASYNC", "B", "A", "Q", "S"]
+ignore = ["B008"]
+
+[lint.per-file-ignores]
+"app/core/config.py" = ["S105"]
+"app/db/base.py" = ["N805"]
+"main.py" = ["S104"]
+"tests/**" = ["S101"]
+
+[format]
+quote-style = "double"
+indent-style = "space"
+line-ending = "lf"
+
