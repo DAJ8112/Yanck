@@ -27,3 +27,4 @@ def enqueue_document_ingestion(document_id: str) -> None:
     celery_app.send_task("worker.tasks.ingest_document", args=[document_id])
 
 
+

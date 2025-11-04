@@ -48,3 +48,4 @@ async def test_register_login_and_me_flow(async_client) -> None:
     assert refreshed_tokens["access_token"] != tokens["access_token"]
 
 
+
