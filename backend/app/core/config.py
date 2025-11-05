@@ -37,9 +37,15 @@ class Settings(BaseSettings):
     # Vector store (FAISS persistence directory)
     vector_store_path: Path = Path("./data/vector_store")
 
+    # LLM providers
+    gemini_api_key: str = ""
+    gemini_model: str = "models/gemini-2.5-flash"
+    gemini_safety_settings: str | None = None
+    rag_top_k: int = 4
+
     # Model provider defaults
-    default_model_provider: str = "ollama"
-    default_model_name: str = "llama3"
+    default_model_provider: str = "gemini"
+    default_model_name: str = "models/gemini-2.5-flash"
 
     @property
     def sync_database_url(self) -> str:
