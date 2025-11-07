@@ -85,7 +85,12 @@ class Document(TimestampMixin, Base):
     size_bytes: Mapped[int] = mapped_column(Integer, nullable=False)
     checksum: Mapped[str | None] = mapped_column(String(64))
     status: Mapped[DocumentStatus] = mapped_column(
-        SQLAlchemyEnum(DocumentStatus, name="document_status"), default=DocumentStatus.PENDING
+        SQLAlchemyEnum(
+            DocumentStatus,
+            name="document_status",
+            values_callable=lambda enum: [item.value for item in enum],
+        ),
+        default=DocumentStatus.PENDING.value,
     )
     error: Mapped[str | None] = mapped_column(Text)
     attributes: Mapped[dict | None] = mapped_column(JSON)

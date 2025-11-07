@@ -100,7 +100,7 @@ class DocumentService:
             mime_type=mime_type,
             size_bytes=size_bytes,
             checksum=checksum,
-            status=DocumentStatus.PENDING,
+            status=DocumentStatus.PENDING.value,
         )
         self.session.add(document)
         await self.session.commit()
@@ -137,7 +137,7 @@ class DocumentService:
         *,
         error: str | None = None,
     ) -> Document:
-        document.status = status
+        document.status = status.value if isinstance(status, DocumentStatus) else status
         document.error = error
         await self.session.commit()
         await self.session.refresh(document)
