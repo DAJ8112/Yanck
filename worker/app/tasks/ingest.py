@@ -107,7 +107,7 @@ async def _persist_chunks(
 async def _update_status(
     session, document: Document, status: DocumentStatus, error: str | None = None
 ) -> None:
-    document.status = status
+    document.status = status.value if isinstance(status, DocumentStatus) else status
     document.error = error
     await session.commit()
     await session.refresh(document)

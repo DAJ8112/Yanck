@@ -70,7 +70,12 @@ class Message(TimestampMixin, Base):
         ForeignKey("conversations.id", ondelete="CASCADE"), index=True, nullable=False
     )
     role: Mapped[MessageRole] = mapped_column(
-        SQLAlchemyEnum(MessageRole, name="message_role"), nullable=False
+        SQLAlchemyEnum(
+            MessageRole,
+            name="message_role",
+            values_callable=lambda enum: [item.value for item in enum],
+        ),
+        nullable=False,
     )
     content: Mapped[str] = mapped_column(Text, nullable=False)
     token_count: Mapped[int | None] = mapped_column(Integer)
@@ -103,7 +108,12 @@ class UsageLog(TimestampMixin, Base):
         ForeignKey("conversations.id", ondelete="SET NULL"), index=True
     )
     event_type: Mapped[UsageEvent] = mapped_column(
-        SQLAlchemyEnum(UsageEvent, name="usage_event"), nullable=False
+        SQLAlchemyEnum(
+            UsageEvent,
+            name="usage_event",
+            values_callable=lambda enum: [item.value for item in enum],
+        ),
+        nullable=False,
     )
     prompt_tokens: Mapped[int | None] = mapped_column(Integer)
     completion_tokens: Mapped[int | None] = mapped_column(Integer)

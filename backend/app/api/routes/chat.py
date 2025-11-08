@@ -66,14 +66,14 @@ async def chat_with_bot(
 
     user_message = Message(
         conversation_id=conversation.id,
-        role=MessageRole.USER,
+        role=MessageRole.USER.value,
         content=clean_message,
     )
     session.add(user_message)
 
     assistant_message = Message(
         conversation_id=conversation.id,
-        role=MessageRole.ASSISTANT,
+        role=MessageRole.ASSISTANT.value,
         content=rag_result.answer,
     )
     session.add(assistant_message)

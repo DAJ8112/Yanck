@@ -142,8 +142,3 @@ class DocumentService:
         await self.session.commit()
         await self.session.refresh(document)
         return document
-
-
-
-
-
